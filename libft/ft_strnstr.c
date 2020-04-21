@@ -3,33 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgerda <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/05 19:05:58 by bgerda            #+#    #+#             */
-/*   Updated: 2019/05/08 17:46:48 by bgerda           ###   ########.fr       */
+/*   Created: 2020/03/14 12:09:09 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:09:09 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+static int		ft_strnstr_che(const char *needle, size_t len)
 {
-	size_t			i;
-	unsigned int	j;
+	if (ft_strcmp(needle, "") == 0)
+		return (0);
+	if (len == 0)
+		return (-1);
+	return (1);
+}
 
-	i = 0;
-	if (needle[i] == '\0')
+char			*ft_strnstr(const char *haystack, const char *needle,
+size_t len)
+{
+	size_t	i1;
+	size_t	i2;
+	size_t	temp;
+
+	i1 = 0;
+	if ((*haystack == 0 && *needle == 0) || (ft_strnstr_che(needle, len) == 0))
 		return ((char*)haystack);
-	if (ft_strlen(haystack) < ft_strlen(needle) || len < ft_strlen(needle))
+	if (ft_strnstr_che(needle, len) == -1)
 		return (NULL);
-	while (haystack[i] != '\0' && i <= len - ft_strlen(needle))
+	while (haystack[i1] != '\0' && i1 < len)
 	{
-		j = 0;
-		while (haystack[i + j] == needle[j] && needle[j] != '\0')
-			j++;
-		if (j == ft_strlen(needle))
-			return ((char*)&haystack[i]);
-		i++;
+		i2 = 0;
+		temp = i1;
+		while (haystack[i1] && needle[i2] && haystack[i1] == needle[i2] && \
+				(i1 < len))
+		{
+			i1++;
+			i2++;
+		}
+		if (needle[i2] == '\0')
+			return ((char*)(haystack + temp));
+		i1 = temp;
+		i1++;
 	}
-	return (0);
+	return (NULL);
 }

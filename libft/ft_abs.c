@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/14 12:08:01 by klekisha          #+#    #+#             */
-/*   Updated: 2020/03/14 12:08:01 by klekisha         ###   ########.fr       */
+/*   Created: 2020/03/14 12:05:08 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:05:10 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+unsigned int	ft_abs(int n)
 {
-	char	*ps;
+	unsigned int	t1;
 
-	ps = (char*)s;
-	while (*ps && *ps != (char)c)
+	if (n < 0)
 	{
-		ps++;
+		t1 = -n;
 	}
-	if (*ps == (char)c)
-		return (ps);
-	return (NULL);
+	else
+	{
+		t1 = n;
+	}
+	return (t1);
 }

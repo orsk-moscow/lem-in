@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgerda <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/06 19:03:33 by bgerda            #+#    #+#             */
-/*   Updated: 2019/05/08 17:23:28 by bgerda           ###   ########.fr       */
+/*   Created: 2020/03/14 12:08:34 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:08:35 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,27 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
+	size_t	i1;
+	size_t	i2;
+	size_t	i3;
+	char	*fresh;
 
-	if (s1 == 0 || s2 == 0)
+	i1 = 0;
+	i2 = 0;
+	i3 = 0;
+	if (!s1 || !s2)
 		return (NULL);
-	if (!(str = ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	while (s1[i1])
+		i1++;
+	while (s2[i2])
+		i2++;
+	fresh = (char*)malloc(sizeof(char) * (i1 + i2 + 1));
+	if (!fresh)
 		return (NULL);
-	return (ft_strcat(ft_strcpy(str, s1), s2));
+	while (i3 < i1)
+		fresh[i3++] = *s1++;
+	while (i3 < (i1 + i2))
+		fresh[i3++] = *s2++;
+	fresh[i3] = '\0';
+	return (fresh);
 }

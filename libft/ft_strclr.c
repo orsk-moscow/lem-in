@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgerda <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/06 17:33:10 by bgerda            #+#    #+#             */
-/*   Updated: 2019/05/08 16:59:05 by bgerda           ###   ########.fr       */
+/*   Created: 2020/03/14 12:08:04 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:08:04 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_strclr(char *s)
 {
-	if (s != 0)
+	if (s)
 		ft_memset(s, 0, ft_strlen(s));
 }

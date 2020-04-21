@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgerda <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 18:48:40 by bgerda            #+#    #+#             */
-/*   Updated: 2019/05/08 16:46:01 by bgerda           ###   ########.fr       */
+/*   Created: 2020/03/14 12:06:58 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:06:59 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	value;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t			i1;
+	unsigned char	*pd;
+	unsigned char	*ps;
 
-	i = 0;
-	value = (unsigned char)c;
-	s1 = (unsigned char*)src;
-	s2 = (unsigned char*)dst;
-	while (i < n)
+	i1 = 0;
+	pd = (unsigned char*)dst;
+	ps = (unsigned char*)src;
+	while (i1 < n)
 	{
-		s2[i] = s1[i];
-		if (s1[i] == value)
-			return (dst + i + 1);
-		i++;
+		*(pd + i1) = *(ps + i1);
+		if (*(ps + i1) == (unsigned char)c)
+		{
+			return (pd + i1 + 1);
+		}
+		i1++;
 	}
 	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgerda <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/28 20:00:50 by bgerda            #+#    #+#             */
-/*   Updated: 2019/04/28 21:03:19 by bgerda           ###   ########.fr       */
+/*   Created: 2020/03/14 12:08:37 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:08:38 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	n;
-	size_t	j;
+	char		*pd;
+	const char	*ps;
+	size_t		n;
+	size_t		dlen;
 
-	i = ft_strlen(dst);
-	n = ft_strlen(src);
-	if (size <= i)
-		n += size;
-	else
-		n += i;
-	j = 0;
-	while (src[j] != '\0' && i + 1 < size)
+	n = size;
+	pd = dst;
+	ps = src;
+	while (n-- != 0 && *dst != '\0')
+		dst++;
+	dlen = dst - pd;
+	n = size - dlen;
+	if (n-- == 0)
+		return (dlen + ft_strlen(src));
+	while (*src != '\0')
 	{
-		dst[i] = src[j];
-		i++;
-		j++;
+		if (n != 0)
+		{
+			*dst++ = *src;
+			n--;
+		}
+		src++;
 	}
-	dst[i] = '\0';
-	return (n);
+	*dst = '\0';
+	return (dlen + (src - ps));
 }

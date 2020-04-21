@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: u18188899 <u18188899@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/14 12:08:01 by klekisha          #+#    #+#             */
-/*   Updated: 2020/03/14 12:08:01 by klekisha         ###   ########.fr       */
+/*   Created: 2020/03/14 12:06:45 by klekisha          #+#    #+#             */
+/*   Updated: 2020/04/21 11:55:30 by u18188899        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t					ft_lstlen(t_list *lst)
 {
-	char	*ps;
+	size_t					sz;
 
-	ps = (char*)s;
-	while (*ps && *ps != (char)c)
+	sz = 0;
+	while (lst)
 	{
-		ps++;
+		sz++;
+		lst = lst->next;
 	}
-	if (*ps == (char)c)
-		return (ps);
-	return (NULL);
+	return (sz);
 }

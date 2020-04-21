@@ -3,29 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgerda <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/06 19:27:49 by bgerda            #+#    #+#             */
-/*   Updated: 2019/05/06 20:16:38 by bgerda           ###   ########.fr       */
+/*   Created: 2020/03/14 12:09:27 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:09:28 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static char	*ft_record_word(int len, char const *s, int t1)
 {
-	int	i;
-	int	j;
+	char	*fresh;
 
-	if (s == NULL)
+	if (!(fresh = (char*)malloc(sizeof(char) * (len + 2))))
 		return (NULL);
-	i = 0;
-	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
-		i++;
-	if (s[i] == '\0')
-		return (ft_strnew(0));
-	j = (int)ft_strlen(s) - 1;
-	while (s[j] == ' ' || s[j] == '\t' || s[j] == '\n')
-		j--;
-	return (ft_strsub(&s[i], 0, j - i + 1));
+	fresh[len + 1] = '\0';
+	while (len >= 0)
+	{
+		fresh[len] = s[t1 + len];
+		len--;
+	}
+	return (fresh);
+}
+
+char		*ft_strtrim(char const *s)
+{
+	int		len;
+	int		i1;
+	int		t1;
+
+	i1 = 0;
+	len = 0;
+	if (!s)
+		return (NULL);
+	while (s[i1] == ' ' || s[i1] == '\n' || s[i1] == '\t')
+		i1++;
+	t1 = i1;
+	while (s[i1])
+	{
+		i1++;
+		len++;
+	}
+	while (i1 > t1 && (s[i1] == '\0' || s[i1] == ' ' || s[i1] == '\n'
+	|| s[i1] == '\t'))
+	{
+		i1--;
+		len--;
+	}
+	return (ft_record_word(len, s, t1));
 }

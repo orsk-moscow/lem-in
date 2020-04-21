@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/14 12:08:01 by klekisha          #+#    #+#             */
-/*   Updated: 2020/03/14 12:08:01 by klekisha         ###   ########.fr       */
+/*   Created: 2020/03/14 12:05:25 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:05:26 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int		ft_count_words(char const *s, char c)
 {
-	char	*ps;
+	int		i1;
+	size_t	len_word;
 
-	ps = (char*)s;
-	while (*ps && *ps != (char)c)
+	if (!s)
+		return (-1);
+	i1 = 0;
+	while (*s)
 	{
-		ps++;
+		while (*s == c)
+			s++;
+		if (!*s)
+			return (i1);
+		i1++;
+		len_word = 1;
+		while (*s && *s != c)
+		{
+			s++;
+			len_word++;
+		}
 	}
-	if (*ps == (char)c)
-		return (ps);
-	return (NULL);
+	return (i1);
 }

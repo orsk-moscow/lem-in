@@ -3,51 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgerda <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/07 17:33:00 by bgerda            #+#    #+#             */
-/*   Updated: 2019/05/08 17:19:32 by bgerda           ###   ########.fr       */
+/*   Created: 2020/03/14 12:06:27 by klekisha          #+#    #+#             */
+/*   Updated: 2020/03/14 12:06:28 by klekisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	len(long n)
+static unsigned int	ft_get_depth(int n)
 {
-	int		i;
+	unsigned int	i1;
+	unsigned int	t1;
 
-	i = 1;
-	while (n / 10 != 0)
+	if (n < 0)
+		i1 = 2;
+	else
+		i1 = 1;
+	t1 = ft_abs(n);
+	while (t1 > 9)
 	{
-		n = n / 10;
-		i++;
+		t1 = t1 / 10;
+		i1++;
 	}
-	return (i);
+	return (i1);
 }
 
-char		*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
-	char	*num;
-	int		sign;
-	int		i;
+	char			*fresh;
+	unsigned int	i1;
+	unsigned int	t1;
 
-	sign = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if (n < 0)
-	{
-		n = -n;
-		sign = 1;
-	}
-	if (!(num = ft_strnew(len(n) + sign)))
+	fresh = (char*)malloc(sizeof(char) * (ft_get_depth(n) + 1));
+	if (!fresh)
 		return (NULL);
-	i = len(n);
-	while (i >= 0)
+	t1 = ft_abs(n);
+	i1 = ft_get_depth(n);
+	fresh[i1] = '\0';
+	while (t1 > 9)
 	{
-		num[--i + sign] = n % 10 + '0';
-		n = n / 10;
+		fresh[--i1] = t1 % 10 + '0';
+		t1 = t1 / 10;
 	}
-	if (sign == 1)
-		num[0] = '-';
-	return (num);
+	fresh[--i1] = t1 + '0';
+	if (n < 0)
+		fresh[--i1] = '-';
+	return (fresh);
 }

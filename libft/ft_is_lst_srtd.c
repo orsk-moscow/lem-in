@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_is_lst_srtd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klekisha <klekisha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: u18188899 <u18188899@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/14 12:08:01 by klekisha          #+#    #+#             */
-/*   Updated: 2020/03/14 12:08:01 by klekisha         ###   ########.fr       */
+/*   Created: 2020/03/14 12:05:36 by klekisha          #+#    #+#             */
+/*   Updated: 2020/04/21 11:55:30 by u18188899        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int						ft_is_lst_srtd(t_list *lst)
 {
-	char	*ps;
-
-	ps = (char*)s;
-	while (*ps && *ps != (char)c)
+	if (!lst)
+		return (0);
+	while (lst->next)
 	{
-		ps++;
+		if (*((int*)(lst->content)) >= *((int*)(lst->next->content)))
+			return (0);
+		lst = lst->next;
 	}
-	if (*ps == (char)c)
-		return (ps);
-	return (NULL);
+	return (1);
 }
