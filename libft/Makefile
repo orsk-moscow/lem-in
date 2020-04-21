@@ -46,9 +46,11 @@ OBJECTS	=	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o \
 
 INCLUDES=./includes
 
+HEADERS = libft.h
+
 all: $(NAME)
 
-$(NAME): $(SRCS)
+$(NAME): $(OBJECTS) $(HEADERS)
 	gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
 	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
